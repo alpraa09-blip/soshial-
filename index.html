@@ -8,113 +8,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- صفحة التسجيل -->
-    <div class="auth-page" id="authPage">
-        <div class="auth-container">
-            <div class="auth-logo">Soshial M</div>
-            <form class="auth-form" id="loginForm">
-                <input type="text" placeholder="اسم المستخدم أو البريد الإلكتروني" required>
-                <input type="password" placeholder="كلمة السر" required>
-                <button type="submit" class="auth-button">تسجيل الدخول</button>
-            </form>
-            <div class="auth-divider">أو</div>
-            <button class="auth-button" id="googleLogin" style="background: var(--success);">
-                <i class="fab fa-google" style="margin-left: 8px;"></i> تسجيل الدخول بحساب Google
-            </button>
-            <div class="auth-footer">
-                ليس لديك حساب؟ <a href="#" class="auth-link" id="showRegister">إنشاء حساب</a>
-            </div>
-        </div>
-
-        <div class="auth-container" id="registerContainer" style="display: none; margin-top: 20px;">
-            <form class="auth-form" id="registerForm">
-                <input type="text" placeholder="اسم المستخدم" required>
-                <input type="email" placeholder="البريد الإلكتروني" required>
-                <input type="password" placeholder="كلمة السر" required>
-                <button type="submit" class="auth-button">إنشاء حساب</button>
-            </form>
-            <div class="auth-footer">
-                لديك حساب بالفعل؟ <a href="#" class="auth-link" id="showLogin">تسجيل الدخول</a>
-            </div>
-        </div>
-    </div>
-
     <!-- التطبيق الرئيسي -->
-    <div class="container" id="appContainer" style="display: none;">
-        <!-- الشريط الجانبي -->
-        <div class="sidebar">
-            <div class="logo">
-                <i class="fas fa-comments"></i>
-                <span>Soshial M</span>
-            </div>
-            
-            <div class="nav-item active" data-page="home">
+    <div class="container">
+        <!-- شريط التنقل السفلي -->
+        <div class="bottom-nav">
+            <div class="bottom-nav-item active" data-page="home">
                 <i class="fas fa-home"></i>
-                <span class="nav-text">الصفحة الرئيسية</span>
+                <span>الرئيسية</span>
             </div>
-            
-            <div class="nav-item" data-page="search">
-                <i class="fas fa-search"></i>
-                <span class="nav-text">بحث</span>
-            </div>
-            
-            <div class="nav-item" data-page="explore">
-                <i class="fas fa-compass"></i>
-                <span class="nav-text">استكشاف</span>
-            </div>
-            
-            <div class="nav-item" data-page="reels">
+            <div class="bottom-nav-item" data-page="shorts">
                 <i class="fas fa-film"></i>
-                <span class="nav-text">ريلز</span>
+                <span>فيديوهات</span>
             </div>
-            
-            <div class="nav-item" data-page="messages">
-                <i class="fas fa-paper-plane"></i>
-                <span class="nav-text">الرسائل</span>
+            <div class="bottom-nav-item" data-page="create">
+                <i class="fas fa-plus"></i>
+                <span>إنشاء</span>
             </div>
-            
-            <div class="nav-item" data-page="notifications">
-                <i class="fas fa-heart"></i>
-                <span class="nav-text">الإشعارات</span>
-            </div>
-            
-            <div class="nav-item" data-page="create">
-                <i class="fas fa-plus-square"></i>
-                <span class="nav-text">إنشاء</span>
-            </div>
-            
-            <div class="nav-item" data-page="profile">
-                <i class="fas fa-user"></i>
-                <span class="nav-text">الملف الشخصي</span>
-            </div>
-            
-            <div class="nav-item" data-page="live">
+            <div class="bottom-nav-item" data-page="live">
                 <i class="fas fa-broadcast-tower"></i>
-                <span class="nav-text">البث المباشر</span>
+                <span>لايف</span>
             </div>
-            
-            <div class="nav-item" data-page="coins">
-                <i class="fas fa-coins"></i>
-                <span class="nav-text">العملات</span>
-            </div>
-            
-            <div class="more-options">
-                <div class="nav-item" data-page="settings">
-                    <i class="fas fa-cog"></i>
-                    <span class="nav-text">الإعدادات</span>
-                </div>
-                
-                <div class="nav-item" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-text">تسجيل الخروج</span>
-                </div>
+            <div class="bottom-nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>حسابي</span>
             </div>
         </div>
 
         <!-- المحتوى الرئيسي -->
         <div class="main-content">
             <!-- الصفحة الرئيسية -->
-            <div class="home-page" id="homePage">
+            <div class="page active" id="homePage">
+                <!-- شريط القصص -->
                 <div class="stories">
                     <div class="story">
                         <div class="story-avatar">
@@ -140,14 +64,9 @@
                         </div>
                         <div class="story-username">fatima</div>
                     </div>
-                    <div class="story">
-                        <div class="story-avatar">
-                            <img src="https://i.pravatar.cc/150?img=5" alt="User">
-                        </div>
-                        <div class="story-username">ali</div>
-                    </div>
                 </div>
 
+                <!-- التغذية -->
                 <div class="feed">
                     <div class="post">
                         <div class="post-header">
@@ -217,9 +136,55 @@
                 </div>
             </div>
 
+            <!-- صفحة الفيديوهات القصيرة -->
+            <div class="page" id="shortsPage">
+                <div class="shorts-container">
+                    <div class="short-video">
+                        <video controls poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113">
+                            <source src="#" type="video/mp4">
+                        </video>
+                        <div class="video-actions">
+                            <div class="video-action">
+                                <i class="fas fa-heart"></i>
+                                <span>1.2K</span>
+                            </div>
+                            <div class="video-action">
+                                <i class="fas fa-comment"></i>
+                                <span>456</span>
+                            </div>
+                            <div class="video-action">
+                                <i class="fas fa-share"></i>
+                                <span>78</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة الإنشاء -->
+            <div class="page" id="createPage">
+                <div class="create-options">
+                    <div class="create-option">
+                        <i class="fas fa-video"></i>
+                        <span>فيديو جديد</span>
+                    </div>
+                    <div class="create-option">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span>بث مباشر</span>
+                    </div>
+                    <div class="create-option">
+                        <i class="fas fa-images"></i>
+                        <span>صورة</span>
+                    </div>
+                    <div class="create-option">
+                        <i class="fas fa-pen"></i>
+                        <span>قصة</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- صفحة البث المباشر -->
-            <div class="live-page" id="livePage">
-                <h1 style="margin-bottom: 20px;">البث المباشر</h1>
+            <div class="page" id="livePage">
                 <div class="live-container">
                     <div class="live-card">
                         <div class="live-preview"></div>
@@ -250,222 +215,76 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="live-card">
-                        <div class="live-preview"></div>
-                        <div class="live-info">
-                            <div class="live-user">
-                                <img src="https://i.pravatar.cc/150?img=10" alt="User" class="live-avatar">
-                                <div class="live-username">music_live</div>
-                            </div>
-                            <div class="live-viewers">2.4K مشاهد</div>
-                            <div class="live-tags">
-                                <span class="live-tag">موسيقى</span>
-                                <span class="live-tag">غناء</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="live-card">
-                        <div class="live-preview"></div>
-                        <div class="live-info">
-                            <div class="live-user">
-                                <img src="https://i.pravatar.cc/150?img=11" alt="User" class="live-avatar">
-                                <div class="live-username">fitness_arabic</div>
-                            </div>
-                            <div class="live-viewers">632 مشاهد</div>
-                            <div class="live-tags">
-                                <span class="live-tag">رياضة</span>
-                                <span class="live-tag">لياقة</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <!-- صفحة الملف الشخصي -->
-            <div class="profile-page" id="profilePage">
+            <div class="page" id="profilePage">
                 <div class="profile-header">
                     <img src="https://i.pravatar.cc/150?img=12" alt="User" class="profile-avatar">
                     <div class="profile-info">
                         <div class="profile-username">
-                            <h2 id="profileUsername">user123</h2>
-                            <button style="background: #efefef; border: none; padding: 5px 9px; border-radius: 4px; margin-left: 10px; cursor: pointer;">تعديل الملف</button>
-                            <i class="fas fa-cog" style="margin-left: 10px; cursor: pointer;"></i>
+                            <h2>زائر</h2>
+                            <button class="login-btn" id="loginBtn">تسجيل الدخول</button>
                         </div>
                         <div class="profile-stats">
-                            <div class="profile-stat"><span>125</span> منشور</div>
-                            <div class="profile-stat"><span>1,254</span> متابع</div>
-                            <div class="profile-stat"><span>856</span> يتابع</div>
-                            <div class="profile-stat"><span id="userCoins">100</span> عملة</div>
-                        </div>
-                        <div class="profile-bio">
-                            <div style="font-weight: 600;">User Name</div>
-                            هذا هو الوصف الشخصي للمستخدم يمكن كتابة أي شيء هنا
-                            <br>
-                            www.example.com
+                            <div class="profile-stat"><span>0</span> منشور</div>
+                            <div class="profile-stat"><span>0</span> متابع</div>
+                            <div class="profile-stat"><span>0</span> يتابع</div>
                         </div>
                     </div>
                 </div>
-                <div class="profile-tabs">
-                    <div class="profile-tab active">
-                        <i class="fas fa-table"></i>
-                        <span>المنشورات</span>
-                    </div>
-                    <div class="profile-tab">
-                        <i class="fas fa-video"></i>
-                        <span>ريلز</span>
-                    </div>
-                    <div class="profile-tab">
-                        <i class="fas fa-bookmark"></i>
-                        <span>المحفوظات</span>
-                    </div>
-                    <div class="profile-tab">
-                        <i class="fas fa-broadcast-tower"></i>
-                        <span>البث المباشر</span>
-                    </div>
-                </div>
-                <div class="profile-posts">
-                    <div class="profile-post">
-                        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131" alt="Post">
-                    </div>
-                    <div class="profile-post">
-                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
-                    </div>
-                    <div class="profile-post">
-                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
-                    </div>
-                    <div class="profile-post">
-                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
-                    </div>
-                    <div class="profile-post">
-                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
-                    </div>
-                    <div class="profile-post">
-                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
-                    </div>
-                </div>
-            </div>
 
-            <!-- صفحة الإعدادات -->
-            <div class="settings-page" id="settingsPage">
-                <h1 style="margin-bottom: 20px;">الإعدادات</h1>
-                
-                <div class="settings-section">
-                    <h2>الحساب</h2>
-                    <div class="settings-item">
-                        <span>تغيير كلمة السر</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="settings-item">
-                        <span>البريد الإلكتروني</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="settings-item">
-                        <span>رقم الهاتف</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h2>الخصوصية</h2>
-                    <div class="settings-item">
-                        <span>الحساب الخاص</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="settings-item">
-                        <span>تعطيل الحساب</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="settings-item">
-                        <span>حذف الحساب</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h2>الإشعارات</h2>
-                    <div class="settings-item">
-                        <span>إشعارات البث المباشر</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="settings-item">
-                        <span>إشعارات الهدايا</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="settings-item">
-                        <span>إشعارات التعليقات</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h2>العملات الرقمية</h2>
-                    <div class="settings-item">
+                <!-- بعد تسجيل الدخول -->
+                <div class="profile-actions" id="profileActions" style="display: none;">
+                    <div class="action-item" id="coinsBtn">
+                        <i class="fas fa-coins"></i>
                         <span>شحن العملات</span>
-                        <i class="fas fa-chevron-left"></i>
                     </div>
-                    <div class="settings-item">
-                        <span>سجل المعاملات</span>
-                        <i class="fas fa-chevron-left"></i>
+                    <div class="action-item">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- صفحة العملات -->
-            <div class="coins-page" id="coinsPage">
-                <h1 style="margin-bottom: 20px;">شحن العملات</h1>
-                <div class="user-coins-display" style="text-align: center; margin-bottom: 20px;">
-                    <h3>رصيدك الحالي: <span id="currentCoins">0</span> عملة</h3>
+                <!-- نموذج تسجيل الدخول -->
+                <div class="login-form" id="loginForm" style="display: none;">
+                    <h3>تسجيل الدخول</h3>
+                    <input type="text" placeholder="اسم المستخدم" id="username">
+                    <input type="password" placeholder="كلمة السر" id="password">
+                    <button class="auth-btn" id="submitLogin">تسجيل الدخول</button>
+                    <button class="auth-btn google-btn">
+                        <i class="fab fa-google"></i> تسجيل الدخول بـ Google
+                    </button>
                 </div>
-                <div class="coin-packages">
-                    <div class="coin-package" data-amount="500" data-price="1">
-                        <div class="coin-amount">500</div>
-                        <div class="coin-price">1 دولار</div>
-                    </div>
-                    <div class="coin-package" data-amount="1000" data-price="5">
-                        <div class="coin-amount">1,000</div>
-                        <div class="coin-price">5 دولار</div>
-                    </div>
-                    <div class="coin-package" data-amount="2500" data-price="10">
-                        <div class="coin-amount">2,500</div>
-                        <div class="coin-price">10 دولار</div>
-                    </div>
-                    <div class="coin-package" data-amount="5000" data-price="50">
-                        <div class="coin-amount">5,000</div>
-                        <div class="coin-price">50 دولار</div>
-                    </div>
-                </div>
-                <div class="payment-form">
-                    <h3 style="margin-bottom: 15px;">معلومات الدفع</h3>
-                    <input type="text" id="paymentName" placeholder="الاسم بالكامل" required>
-                    <input type="tel" id="paymentPhone" placeholder="رقم الهاتف" required>
-                    <button class="pay-button" id="payButton">الانتقال للدفع عبر واتساب</button>
-                </div>
-            </div>
-        </div>
 
-        <!-- شريط التنقل السفلي للجوال -->
-        <div class="bottom-nav">
-            <div class="bottom-nav-item active" data-page="home">
-                <i class="fas fa-home"></i>
-                <span>الرئيسية</span>
-            </div>
-            <div class="bottom-nav-item" data-page="search">
-                <i class="fas fa-search"></i>
-                <span>بحث</span>
-            </div>
-            <div class="bottom-nav-item" data-page="reels">
-                <i class="fas fa-film"></i>
-                <span>ريلز</span>
-            </div>
-            <div class="bottom-nav-item" data-page="live">
-                <i class="fas fa-broadcast-tower"></i>
-                <span>بث مباشر</span>
-            </div>
-            <div class="bottom-nav-item" data-page="profile">
-                <i class="fas fa-user"></i>
-                <span>حسابي</span>
+                <!-- صفحة شحن العملات -->
+                <div class="coins-page" id="coinsPage" style="display: none;">
+                    <h3>شحن العملات</h3>
+                    <div class="coin-packages">
+                        <div class="coin-package" data-amount="500" data-price="1">
+                            <div class="coin-amount">500 عملة</div>
+                            <div class="coin-price">1 دولار</div>
+                        </div>
+                        <div class="coin-package" data-amount="1000" data-price="5">
+                            <div class="coin-amount">1,000 عملة</div>
+                            <div class="coin-price">5 دولار</div>
+                        </div>
+                        <div class="coin-package" data-amount="2500" data-price="10">
+                            <div class="coin-amount">2,500 عملة</div>
+                            <div class="coin-price">10 دولار</div>
+                        </div>
+                        <div class="coin-package" data-amount="5000" data-price="50">
+                            <div class="coin-amount">5,000 عملة</div>
+                            <div class="coin-price">50 دولار</div>
+                        </div>
+                    </div>
+                    <div class="payment-form">
+                        <input type="text" id="paymentName" placeholder="الاسم بالكامل">
+                        <input type="tel" id="paymentPhone" placeholder="رقم الهاتف">
+                        <button class="pay-button" id="payButton">الدفع عبر واتساب</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
