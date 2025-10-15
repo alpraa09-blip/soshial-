@@ -18,7 +18,7 @@
                 <button type="submit" class="auth-button">تسجيل الدخول</button>
             </form>
             <div class="auth-divider">أو</div>
-            <button class="auth-button" style="background: var(--success);">
+            <button class="auth-button" id="googleLogin" style="background: var(--success);">
                 <i class="fab fa-google" style="margin-left: 8px;"></i> تسجيل الدخول بحساب Google
             </button>
             <div class="auth-footer">
@@ -178,7 +178,7 @@
                         <div class="post-time">منذ 3 ساعات</div>
                         <div class="add-comment">
                             <input type="text" placeholder="أضف تعليقًا...">
-                            <button>نشر</button>
+                            <button type="button">نشر</button>
                         </div>
                     </div>
 
@@ -211,7 +211,7 @@
                         <div class="post-time">منذ 6 ساعات</div>
                         <div class="add-comment">
                             <input type="text" placeholder="أضف تعليقًا...">
-                            <button>نشر</button>
+                            <button type="button">نشر</button>
                         </div>
                     </div>
                 </div>
@@ -289,15 +289,15 @@
                     <img src="https://i.pravatar.cc/150?img=12" alt="User" class="profile-avatar">
                     <div class="profile-info">
                         <div class="profile-username">
-                            <h2>user123</h2>
+                            <h2 id="profileUsername">user123</h2>
                             <button style="background: #efefef; border: none; padding: 5px 9px; border-radius: 4px; margin-left: 10px; cursor: pointer;">تعديل الملف</button>
-                            <i class="fas fa-cog" style="margin-left: 10px; cursor: pointer;" data-page="settings"></i>
+                            <i class="fas fa-cog" style="margin-left: 10px; cursor: pointer;"></i>
                         </div>
                         <div class="profile-stats">
                             <div class="profile-stat"><span>125</span> منشور</div>
                             <div class="profile-stat"><span>1,254</span> متابع</div>
                             <div class="profile-stat"><span>856</span> يتابع</div>
-                            <div class="profile-stat"><span class="user-coins">100</span> عملة</div>
+                            <div class="profile-stat"><span id="userCoins">100</span> عملة</div>
                         </div>
                         <div class="profile-bio">
                             <div style="font-weight: 600;">User Name</div>
@@ -416,22 +416,22 @@
             <div class="coins-page" id="coinsPage">
                 <h1 style="margin-bottom: 20px;">شحن العملات</h1>
                 <div class="user-coins-display" style="text-align: center; margin-bottom: 20px;">
-                    <h3>رصيدك الحالي: <span class="user-coins">0</span> عملة</h3>
+                    <h3>رصيدك الحالي: <span id="currentCoins">0</span> عملة</h3>
                 </div>
                 <div class="coin-packages">
-                    <div class="coin-package">
+                    <div class="coin-package" data-amount="500" data-price="1">
                         <div class="coin-amount">500</div>
                         <div class="coin-price">1 دولار</div>
                     </div>
-                    <div class="coin-package">
+                    <div class="coin-package" data-amount="1000" data-price="5">
                         <div class="coin-amount">1,000</div>
                         <div class="coin-price">5 دولار</div>
                     </div>
-                    <div class="coin-package">
+                    <div class="coin-package" data-amount="2500" data-price="10">
                         <div class="coin-amount">2,500</div>
                         <div class="coin-price">10 دولار</div>
                     </div>
-                    <div class="coin-package">
+                    <div class="coin-package" data-amount="5000" data-price="50">
                         <div class="coin-amount">5,000</div>
                         <div class="coin-price">50 دولار</div>
                     </div>
@@ -440,7 +440,7 @@
                     <h3 style="margin-bottom: 15px;">معلومات الدفع</h3>
                     <input type="text" id="paymentName" placeholder="الاسم بالكامل" required>
                     <input type="tel" id="paymentPhone" placeholder="رقم الهاتف" required>
-                    <button class="pay-button">الانتقال للدفع عبر واتساب</button>
+                    <button class="pay-button" id="payButton">الانتقال للدفع عبر واتساب</button>
                 </div>
             </div>
         </div>
