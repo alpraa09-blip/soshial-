@@ -9,9 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeApp() {
-    // إعداد مستمعي الأحداث للنماذج
-    setupAuthForms();
-    
     // إعداد التنقل
     setupNavigation();
     
@@ -21,120 +18,15 @@ function initializeApp() {
     console.log('Soshial M - جاهز للاستخدام');
 }
 
-// إعداد نماذج المصادقة
-function setupAuthForms() {
-    const authPage = document.getElementById('authPage');
-    const appContainer = document.getElementById('appContainer');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const showRegister = document.getElementById('showRegister');
-    const showLogin = document.getElementById('showLogin');
-    const registerContainer = document.getElementById('registerContainer');
-    const googleLogin = document.getElementById('googleLogin');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    // عرض نموذج التسجيل
-    showRegister.addEventListener('click', function(e) {
-        e.preventDefault();
-        registerContainer.style.display = 'block';
-    });
-
-    // عرض نموذج تسجيل الدخول
-    showLogin.addEventListener('click', function(e) {
-        e.preventDefault();
-        registerContainer.style.display = 'none';
-    });
-
-    // تسجيل الدخول
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const username = this.querySelector('input[type="text"]').value;
-        const password = this.querySelector('input[type="password"]').value;
-        
-        if (username && password) {
-            currentUser = {
-                username: username,
-                email: `${username}@example.com`,
-                coins: 100
-            };
-            
-            authPage.style.display = 'none';
-            appContainer.style.display = 'flex';
-            updateUserInfo();
-            showPage('home');
-        }
-    });
-
-    // إنشاء حساب
-    registerForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const username = this.querySelector('input[type="text"]').value;
-        const email = this.querySelector('input[type="email"]').value;
-        const password = this.querySelector('input[type="password"]').value;
-        
-        if (username && email && password) {
-            currentUser = {
-                username: username,
-                email: email,
-                coins: 50
-            };
-            
-            authPage.style.display = 'none';
-            appContainer.style.display = 'flex';
-            updateUserInfo();
-            showPage('home');
-        }
-    });
-
-    // تسجيل الدخول بـ Google
-    googleLogin.addEventListener('click', function() {
-        currentUser = {
-            username: 'user_google',
-            email: 'user@gmail.com',
-            coins: 75
-        };
-        
-        authPage.style.display = 'none';
-        appContainer.style.display = 'flex';
-        updateUserInfo();
-        showPage('home');
-    });
-
-    // تسجيل الخروج
-    logoutBtn.addEventListener('click', function() {
-        currentUser = null;
-        appContainer.style.display = 'none';
-        authPage.style.display = 'flex';
-        loginForm.reset();
-        registerForm.reset();
-        registerContainer.style.display = 'none';
-    });
-}
-
 // إعداد التنقل
 function setupNavigation() {
-    const navItems = document.querySelectorAll('.nav-item');
-    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+    const navItems = document.querySelectorAll('.bottom-nav-item');
 
     navItems.forEach(item => {
         item.addEventListener('click', function() {
             const page = this.getAttribute('data-page');
             showPage(page);
         });
-    });
-
-    bottomNavItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const page = this.getAttribute('data-page');
-            showPage(page);
-        });
-    });
-
-    // أيقونة الإعدادات في الملف الشخصي
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('fa-cog')) {
-            showPage('settings');
-        }
     });
 }
 
@@ -167,17 +59,65 @@ function setupInteractions() {
             const commentInput = e.target.parentElement.querySelector('input');
             const commentText = commentInput.value.trim();
             
-            if (commentText && currentUser) {
+            if (commentText) {
                 const post = e.target.closest('.post');
                 const caption = post.querySelector('.post-caption');
                 
                 const newComment = document.createElement('div');
                 newComment.className = 'post-caption';
-                newComment.innerHTML = `<span class="username">${currentUser.username}</span> ${commentText}`;
+                newComment.innerHTML = `<span class="username">زائر</span> ${commentText}`;
                 
                 caption.parentNode.insertBefore(newComment, caption.nextSibling);
                 commentInput.value = '';
             }
+        }
+    });
+
+    // تسجيل الدخول
+    const loginBtn = document.getElementById('loginBtn');
+    const loginForm = document.getElementById('loginForm');
+    const submitLogin = document.getElementById('submitLogin');
+    const profileActions = document.getElementById('profileActions');
+
+    loginBtn.addEventListener('click', function() {
+        loginForm.style.display = 'block';
+        this.style.display = 'none';
+    });
+
+    submitLogin.addEventListener('click', function() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        if (username && password) {
+            currentUser = {
+                username: username,
+                coins: 100
+            };
+            
+            loginForm.style.display = 'none';
+            profileActions.style.display = 'block';
+            document.querySelector('.profile-username h2').textContent = username;
+            document.querySelector('.login-btn').style.display = 'none';
+            
+            alert('تم تسجيل الدخول بنجاح!');
+        }
+    });
+
+    // شحن العملات
+    const coinsBtn = document.getElementById('coinsBtn');
+    const coinsPage = document.getElementById('coinsPage');
+
+    coinsBtn.addEventListener('click', function() {
+        coinsPage.style.display = 'block';
+        profileActions.style.display = 'none';
+        initCoinsPage();
+    });
+
+    // زر العودة من صفحة العملات
+    coinsPage.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+            profileActions.style.display = 'block';
         }
     });
 }
@@ -198,48 +138,31 @@ function updateLikesCount(heartIcon, isAdding) {
 // عرض الصفحة
 function showPage(page) {
     // إخفاء جميع الصفحات
-    const pages = ['home', 'live', 'profile', 'settings', 'coins'];
-    pages.forEach(pageName => {
-        const pageElement = document.getElementById(pageName + 'Page');
-        if (pageElement) {
-            pageElement.style.display = 'none';
-        }
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
     });
 
-    // إزالة النشط من جميع العناصر
-    document.querySelectorAll('.nav-item, .bottom-nav-item').forEach(item => {
+    // إزالة النشط من جميع عناصر التنقل
+    document.querySelectorAll('.bottom-nav-item').forEach(item => {
         item.classList.remove('active');
     });
 
     // عرض الصفحة المطلوبة
     const targetPage = document.getElementById(page + 'Page');
     if (targetPage) {
-        targetPage.style.display = 'block';
+        targetPage.classList.add('active');
         
-        // تحديث العناصر النشطة
+        // تحديث العنصر النشط في التنقل
         const activeNav = document.querySelector(`[data-page="${page}"]`);
-        const activeBottomNav = document.querySelector(`.bottom-nav-item[data-page="${page}"]`);
-        
         if (activeNav) activeNav.classList.add('active');
-        if (activeBottomNav) activeBottomNav.classList.add('active');
         
-        // تهيئة الصفحة الخاصة إذا لزم الأمر
-        if (page === 'coins') {
-            initCoinsPage();
+        // إخفاء صفحات إضافية إذا كانت ظاهرة
+        if (page !== 'profile') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('coinsPage').style.display = 'none';
+            document.getElementById('profileActions').style.display = 'none';
+            document.getElementById('loginBtn').style.display = 'block';
         }
-    }
-}
-
-// تحديث معلومات المستخدم
-function updateUserInfo() {
-    if (currentUser) {
-        const profileUsername = document.getElementById('profileUsername');
-        const userCoins = document.getElementById('userCoins');
-        const currentCoins = document.getElementById('currentCoins');
-        
-        if (profileUsername) profileUsername.textContent = currentUser.username;
-        if (userCoins) userCoins.textContent = currentUser.coins;
-        if (currentCoins) currentCoins.textContent = currentUser.coins;
     }
 }
 
@@ -286,12 +209,16 @@ function initCoinsPage() {
 // معالجة الدفع
 function processPayment(name, phone, package) {
     const message = `طلب شراء عملات Soshial M:
+    
 الاسم: ${name}
 رقم الهاتف: ${phone}
 الباقة: ${package.amount} عملة
 السعر: ${package.price} دولار
-التاريخ: ${new Date().toLocaleString()}`;
-    
+المستخدم: ${currentUser ? currentUser.username : 'زائر'}
+التاريخ: ${new Date().toLocaleString()}
+
+يرجى تأكيد الطلب وإضافة العملات للحساب.`;
+
     const whatsappUrl = `https://wa.me/201055891020?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     
