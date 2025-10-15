@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soshial M - تطبيق التواصل الاجتماعي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #405DE6;
+            --secondary: #5851DB;
+            --accent: #833AB4;
+            --danger: #FD1D1D;
+            --success: #00C851;
+            --warning: #ffbb33;
+            --dark: #121212;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border: #dbdbdb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #262626;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* الشريط الجانبي */
+        .sidebar {
+            width: 245px;
+            background: white;
+            border-left: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            padding: 20px 10px;
+            overflow-y: auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding: 0 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-left: 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 16px;
+        }
+
+        .nav-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-item.active {
+            font-weight: 600;
+        }
+
+        .nav-item i {
+            margin-left: 15px;
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .more-options {
+            position: absolute;
+            bottom: 20px;
+            width: calc(100% - 20px);
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            flex: 1;
+            margin-right: 245px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .stories {
+            display: flex;
+            padding: 16px 0;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .story-avatar {
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(45deg, var(--accent), var(--danger), var(--warning));
+            margin-bottom: 5px;
+        }
+
+        .story-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .story-username {
+            font-size: 12px;
+            max-width: 66px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* البوستات */
+        .feed {
+            max-width: 614px;
+            margin: 0 auto;
+        }
+
+        .post {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+        }
+
+        .post-user {
+            display: flex;
+            align-items: center;
+        }
+
+        .post-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .post-username {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .post-options {
+            cursor: pointer;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 614px;
+            object-fit: cover;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+        }
+
+        .post-actions-left i {
+            font-size: 24px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .post-likes {
+            font-weight: 600;
+            padding: 0 16px;
+            margin-bottom: 8px;
+        }
+
+        .post-caption {
+            padding: 0 16px 8px;
+        }
+
+        .post-caption .username {
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .post-time {
+            color: var(--gray);
+            font-size: 10px;
+            padding: 0 16px 12px;
+            text-transform: uppercase;
+        }
+
+        .add-comment {
+            display: flex;
+            border-top: 1px solid var(--border);
+            padding: 12px 16px;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .add-comment button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        /* شريط التنقل السفلي */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid var(--border);
+            padding: 10px 0;
+            justify-content: space-around;
+            z-index: 100;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .bottom-nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        /* صفحة البث المباشر */
+        .live-page {
+            display: none;
+            padding: 20px;
+        }
+
+        .live-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .live-card {
+            width: calc(50% - 10px);
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .live-preview {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+        }
+
+        .live-info {
+            padding: 10px;
+        }
+
+        .live-user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .live-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+
+        .live-username {
+            font-weight: 600;
+        }
+
+        .live-viewers {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .live-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 5px;
+        }
+
+        .live-tag {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* صفحة الملف الشخصي */
+        .profile-page {
+            display: none;
+            max-width: 935px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            display: flex;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-left: 60px;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-username {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-username h2 {
+            font-size: 28px;
+            font-weight: 300;
+            margin-left: 20px;
+        }
+
+        .profile-stats {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .profile-stat {
+            margin-left: 40px;
+        }
+
+        .profile-stat span {
+            font-weight: 600;
+        }
+
+        .profile-bio {
+            line-height: 1.5;
+        }
+
+        .profile-tabs {
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .profile-tab {
+            padding: 16px;
+            margin: 0 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-tab.active {
+            color: #262626;
+            border-top: 1px solid #262626;
+            margin-top: -1px;
+        }
+
+        .profile-tab i {
+            margin-left: 6px;
+        }
+
+        .profile-posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            margin-top: 20px;
+        }
+
+        .profile-post {
+            aspect-ratio: 1;
+            background: #f0f0f0;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* صفحة الاعدادات */
+        .settings-page {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+        }
+
+        .settings-section h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        /* صفحة التسجيل */
+        .auth-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fafafa;
+        }
+
+        .auth-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px 40px;
+            width: 350px;
+            text-align: center;
+        }
+
+        .auth-logo {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-form input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: #fafafa;
+            font-size: 12px;
+        }
+
+        .auth-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            font-weight: 600;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            color: var(--gray);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .auth-divider::before {
+            margin-left: 10px;
+        }
+
+        .auth-divider::after {
+            margin-right: 10px;
+        }
+
+        .auth-footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .auth-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 1260px) {
+            .sidebar {
+                width: 72px;
+            }
+            .sidebar .nav-text {
+                display: none;
+            }
+            .main-content {
+                margin-right: 72px;
+            }
+            .logo span {
+                display: none;
+            }
+            .logo {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-right: 0;
+                padding-bottom: 60px;
+            }
+            .bottom-nav {
+                display: flex;
+            }
+            .live-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- صفحة التسجيل -->
+    <div class="auth-page" id="authPage">
+        <div class="auth-container">
+            <div class="auth-logo">Soshial M</div>
+            <form class="auth-form" id="loginForm">
+                <input type="text" placeholder="اسم المستخدم أو البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة السر" required>
+                <button type="submit" class="auth-button">تسجيل الدخول</button>
+            </form>
+            <div class="auth-divider">أو</div>
+            <button class="auth-button" style="background: var(--success);">
+                <i class="fab fa-google" style="margin-left: 8px;"></i> تسجيل الدخول بحساب Google
+            </button>
+            <div class="auth-footer">
+                ليس لديك حساب؟ <a href="#" class="auth-link" id="showRegister">إنشاء حساب</a>
+            </div>
+        </div>
+
+        <div class="auth-container" id="registerContainer" style="display: none; margin-top: 20px;">
+            <form class="auth-form" id="registerForm">
+                <input type="text" placeholder="اسم المستخدم" required>
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة السر" required>
+                <button type="submit" class="auth-button">إنشاء حساب</button>
+            </form>
+            <div class="auth-footer">
+                لديك حساب بالفعل؟ <a href="#" class="auth-link" id="showLogin">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- التطبيق الرئيسي -->
+    <div class="container" id="appContainer" style="display: none;">
+        <!-- الشريط الجانبي -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-comments"></i>
+                <span>Soshial M</span>
+            </div>
+            
+            <div class="nav-item active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">الصفحة الرئيسية</span>
+            </div>
+            
+            <div class="nav-item" data-page="search">
+                <i class="fas fa-search"></i>
+                <span class="nav-text">بحث</span>
+            </div>
+            
+            <div class="nav-item" data-page="explore">
+                <i class="fas fa-compass"></i>
+                <span class="nav-text">استكشاف</span>
+            </div>
+            
+            <div class="nav-item" data-page="reels">
+                <i class="fas fa-film"></i>
+                <span class="nav-text">ريلز</span>
+            </div>
+            
+            <div class="nav-item" data-page="messages">
+                <i class="fas fa-paper-plane"></i>
+                <span class="nav-text">الرسائل</span>
+            </div>
+            
+            <div class="nav-item" data-page="notifications">
+                <i class="fas fa-heart"></i>
+                <span class="nav-text">الإشعارات</span>
+            </div>
+            
+            <div class="nav-item" data-page="create">
+                <i class="fas fa-plus-square"></i>
+                <span class="nav-text">إنشاء</span>
+            </div>
+            
+            <div class="nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span class="nav-text">الملف الشخصي</span>
+            </div>
+            
+            <div class="nav-item" data-page="live">
+                <i class="fas fa-broadcast-tower"></i>
+                <span class="nav-text">البث المباشر</span>
+            </div>
+            
+            <div class="nav-item" data-page="coins">
+                <i class="fas fa-coins"></i>
+                <span class="nav-text">العملات</span>
+            </div>
+            
+            <div class="more-options">
+                <div class="nav-item" data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">الإعدادات</span>
+                </div>
+                
+                <div class="nav-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-text">تسجيل الخروج</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- المحتوى الرئيسي -->
+        <div class="main-content">
+            <!-- الصفحة الرئيسية -->
+            <div class="home-page" id="homePage">
+                <div class="stories">
+                    <div class="story">
+                        <div class="story-avatar">
+                            <img src="https://i.pravatar.cc/150?img=1" alt="User">
+                        </div>
+                        <div class="story-username">ahmed</div>
+                    </div>
+                    <div class="story">
+                        <div class="story-avatar">
+                            <img src="https://i.pravatar.cc/150?img=2" alt="User">
+                        </div>
+                        <div class="story-username">sara</div>
+                    </div>
+                    <div class="story">
+                        <div class="story-avatar">
+                            <img src="https://i.pravatar.cc/150?img=3" alt="User">
+                        </div>
+                        <div class="story-username">mohamed</div>
+                    </div>
+                    <div class="story">
+                        <div class="story-avatar">
+                            <img src="https://i.pravatar.cc/150?img=4" alt="User">
+                        </div>
+                        <div class="story-username">fatima</div>
+                    </div>
+                    <div class="story">
+                        <div class="story-avatar">
+                            <img src="https://i.pravatar.cc/150?img=5" alt="User">
+                        </div>
+                        <div class="story-username">ali</div>
+                    </div>
+                </div>
+
+                <div class="feed">
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <img src="https://i.pravatar.cc/150?img=6" alt="User" class="post-avatar">
+                                <div class="post-username">travel_lover</div>
+                            </div>
+                            <div class="post-options">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="post-image" alt="Post">
+                        <div class="post-actions">
+                            <div class="post-actions-left">
+                                <i class="far fa-heart"></i>
+                                <i class="far fa-comment"></i>
+                                <i class="far fa-paper-plane"></i>
+                            </div>
+                            <div class="post-actions-right">
+                                <i class="far fa-bookmark"></i>
+                            </div>
+                        </div>
+                        <div class="post-likes">1,234 إعجاب</div>
+                        <div class="post-caption">
+                            <span class="username">travel_lover</span>
+                            جمال الطبيعة لا يوصف! 🌄
+                        </div>
+                        <div class="post-time">منذ 3 ساعات</div>
+                        <div class="add-comment">
+                            <input type="text" placeholder="أضف تعليقًا...">
+                            <button>نشر</button>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <img src="https://i.pravatar.cc/150?img=7" alt="User" class="post-avatar">
+                                <div class="post-username">foodie_arabic</div>
+                            </div>
+                            <div class="post-options">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b" class="post-image" alt="Post">
+                        <div class="post-actions">
+                            <div class="post-actions-left">
+                                <i class="far fa-heart"></i>
+                                <i class="far fa-comment"></i>
+                                <i class="far fa-paper-plane"></i>
+                            </div>
+                            <div class="post-actions-right">
+                                <i class="far fa-bookmark"></i>
+                            </div>
+                        </div>
+                        <div class="post-likes">2,567 إعجاب</div>
+                        <div class="post-caption">
+                            <span class="username">foodie_arabic</span>
+                            وجبة عربية تقليدية لذيذة! 🍛
+                        </div>
+                        <div class="post-time">منذ 6 ساعات</div>
+                        <div class="add-comment">
+                            <input type="text" placeholder="أضف تعليقًا...">
+                            <button>نشر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة البث المباشر -->
+            <div class="live-page" id="livePage">
+                <h1 style="margin-bottom: 20px;">البث المباشر</h1>
+                <div class="live-container">
+                    <div class="live-card">
+                        <div class="live-preview"></div>
+                        <div class="live-info">
+                            <div class="live-user">
+                                <img src="https://i.pravatar.cc/150?img=8" alt="User" class="live-avatar">
+                                <div class="live-username">gamers_zone</div>
+                            </div>
+                            <div class="live-viewers">1.2K مشاهد</div>
+                            <div class="live-tags">
+                                <span class="live-tag">ألعاب</span>
+                                <span class="live-tag">ببجي</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="live-card">
+                        <div class="live-preview"></div>
+                        <div class="live-info">
+                            <div class="live-user">
+                                <img src="https://i.pravatar.cc/150?img=9" alt="User" class="live-avatar">
+                                <div class="live-username">cooking_with_sara</div>
+                            </div>
+                            <div class="live-viewers">856 مشاهد</div>
+                            <div class="live-tags">
+                                <span class="live-tag">طبخ</span>
+                                <span class="live-tag">وصفات</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="live-card">
+                        <div class="live-preview"></div>
+                        <div class="live-info">
+                            <div class="live-user">
+                                <img src="https://i.pravatar.cc/150?img=10" alt="User" class="live-avatar">
+                                <div class="live-username">music_live</div>
+                            </div>
+                            <div class="live-viewers">2.4K مشاهد</div>
+                            <div class="live-tags">
+                                <span class="live-tag">موسيقى</span>
+                                <span class="live-tag">غناء</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="live-card">
+                        <div class="live-preview"></div>
+                        <div class="live-info">
+                            <div class="live-user">
+                                <img src="https://i.pravatar.cc/150?img=11" alt="User" class="live-avatar">
+                                <div class="live-username">fitness_arabic</div>
+                            </div>
+                            <div class="live-viewers">632 مشاهد</div>
+                            <div class="live-tags">
+                                <span class="live-tag">رياضة</span>
+                                <span class="live-tag">لياقة</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة الملف الشخصي -->
+            <div class="profile-page" id="profilePage">
+                <div class="profile-header">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="User" class="profile-avatar">
+                    <div class="profile-info">
+                        <div class="profile-username">
+                            <h2>user123</h2>
+                            <button style="background: #efefef; border: none; padding: 5px 9px; border-radius: 4px; margin-left: 10px; cursor: pointer;">تعديل الملف</button>
+                            <i class="fas fa-cog" style="margin-left: 10px; cursor: pointer;" data-page="settings"></i>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="profile-stat"><span>125</span> منشور</div>
+                            <div class="profile-stat"><span>1,254</span> متابع</div>
+                            <div class="profile-stat"><span>856</span> يتابع</div>
+                        </div>
+                        <div class="profile-bio">
+                            <div style="font-weight: 600;">User Name</div>
+                            هذا هو الوصف الشخصي للمستخدم يمكن كتابة أي شيء هنا
+                            <br>
+                            www.example.com
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-tabs">
+                    <div class="profile-tab active">
+                        <i class="fas fa-table"></i>
+                        <span>المنشورات</span>
+                    </div>
+                    <div class="profile-tab">
+                        <i class="fas fa-video"></i>
+                        <span>ريلز</span>
+                    </div>
+                    <div class="profile-tab">
+                        <i class="fas fa-bookmark"></i>
+                        <span>المحفوظات</span>
+                    </div>
+                    <div class="profile-tab">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span>البث المباشر</span>
+                    </div>
+                </div>
+                <div class="profile-posts">
+                    <div class="profile-post">
+                        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131" alt="Post">
+                    </div>
+                    <div class="profile-post">
+                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
+                    </div>
+                    <div class="profile-post">
+                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
+                    </div>
+                    <div class="profile-post">
+                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
+                    </div>
+                    <div class="profile-post">
+                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
+                    </div>
+                    <div class="profile-post">
+                        <img src="https://images.unsplash.com/photo-1519138138-4c4b1c7c7b7c" alt="Post">
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة الإعدادات -->
+            <div class="settings-page" id="settingsPage">
+                <h1 style="margin-bottom: 20px;">الإعدادات</h1>
+                
+                <div class="settings-section">
+                    <h2>الحساب</h2>
+                    <div class="settings-item">
+                        <span>تغيير كلمة السر</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="settings-item">
+                        <span>البريد الإلكتروني</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="settings-item">
+                        <span>رقم الهاتف</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h2>الخصوصية</h2>
+                    <div class="settings-item">
+                        <span>الحساب الخاص</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="settings-item">
+                        <span>تعطيل الحساب</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="settings-item">
+                        <span>حذف الحساب</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h2>الإشعارات</h2>
+                    <div class="settings-item">
+                        <span>إشعارات البث المباشر</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="settings-item">
+                        <span>إشعارات الهدايا</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="settings-item">
+                        <span>إشعارات التعليقات</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h2>العملات الرقمية</h2>
+                    <div class="settings-item">
+                        <span>شحن العملات</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="settings-item">
+                        <span>سجل المعاملات</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- شريط التنقل السفلي للجوال -->
+        <div class="bottom-nav">
+            <div class="bottom-nav-item active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+            </div>
+            <div class="bottom-nav-item" data-page="search">
+                <i class="fas fa-search"></i>
+                <span>بحث</span>
+            </div>
+            <div class="bottom-nav-item" data-page="reels">
+                <i class="fas fa-film"></i>
+                <span>ريلز</span>
+            </div>
+            <div class="bottom-nav-item" data-page="live">
+                <i class="fas fa-broadcast-tower"></i>
+                <span>بث مباشر</span>
+            </div>
+            <div class="bottom-nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>حسابي</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtJKG2p4mfbxYLqVZHcu7t_YOSx15ts14",
+            authDomain: "soshial-9932a.firebaseapp.com",
+            projectId: "soshial-9932a",
+            storageBucket: "soshial-9932a.firebasestorage.app",
+            messagingSenderId: "678676776751",
+            appId: "1:678676776751:web:165b761716f6df2b3f03da",
+            measurementId: "G-4LL3LE15P9"
+        };
+
+        // Initialize Firebase (commented for demo)
+        // const app = firebase.initializeApp(firebaseConfig);
+        // const analytics = firebase.analytics();
+
+        // DOM Elements
+        const authPage = document.getElementById('authPage');
+        const appContainer = document.getElementById('appContainer');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+        const registerContainer = document.getElementById('registerContainer');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const navItems = document.querySelectorAll('.nav-item');
+        const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+        
+        // Pages
+        const homePage = document.getElementById('homePage');
+        const livePage = document.getElementById('livePage');
+        const profilePage = document.getElementById('profilePage');
+        const settingsPage = document.getElementById('settingsPage');
+        
+        // Show Register Form
+        showRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerContainer.style.display = 'block';
+        });
+        
+        // Show Login Form
+        showLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerContainer.style.display = 'none';
+        });
+        
+        // Login Form Submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate login
+            authPage.style.display = 'none';
+            appContainer.style.display = 'flex';
+            showPage('home');
+        });
+        
+        // Register Form Submission
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate registration
+            authPage.style.display = 'none';
+            appContainer.style.display = 'flex';
+            showPage('home');
+        });
+        
+        // Logout
+        logoutBtn.addEventListener('click', function() {
+            appContainer.style.display = 'none';
+            authPage.style.display = 'flex';
+        });
+        
+        // Navigation
+        function showPage(page) {
+            // Hide all pages
+            homePage.style.display = 'none';
+            livePage.style.display = 'none';
+            profilePage.style.display = 'none';
+            settingsPage.style.display = 'none';
+            
+            // Remove active class from all nav items
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            bottomNavItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected page
+            if (page === 'home') {
+                homePage.style.display = 'block';
+                document.querySelector('[data-page="home"]').classList.add('active');
+                document.querySelector('.bottom-nav-item[data-page="home"]').classList.add('active');
+            } else if (page === 'live') {
+                livePage.style.display = 'block';
+                document.querySelector('[data-page="live"]').classList.add('active');
+                document.querySelector('.bottom-nav-item[data-page="live"]').classList.add('active');
+            } else if (page === 'profile') {
+                profilePage.style.display = 'block';
+                document.querySelector('[data-page="profile"]').classList.add('active');
+                document.querySelector('.bottom-nav-item[data-page="profile"]').classList.add('active');
+            } else if (page === 'settings') {
+                settingsPage.style.display = 'block';
+                document.querySelector('[data-page="settings"]').classList.add('active');
+            }
+        }
+        
+        // Add event listeners to nav items
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const page = this.getAttribute('data-page');
+                showPage(page);
+            });
+        });
+        
+        // Add event listeners to bottom nav items
+        bottomNavItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const page = this.getAttribute('data-page');
+                showPage(page);
+            });
+        });
+        
+        // Settings icon in profile
+        document.querySelector('.fa-cog').addEventListener('click', function() {
+            showPage('settings');
+        });
+    </script>
+</body>
+</html>
