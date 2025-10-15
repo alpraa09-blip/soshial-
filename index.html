@@ -814,6 +814,33 @@
             background: var(--border);
             color: var(--text);
         }
+
+        /* تسجيل الدخول */
+        .login-form {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -824,25 +851,25 @@
             <div class="page home-page active">
                 <!-- القصص -->
                 <div class="stories">
-                    <div class="story" onclick="viewStory(1)">
+                    <div class="story" onclick="viewStory('ahmed')">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=1" alt="قصة">
                         </div>
                         <div class="story-username">ahmed</div>
                     </div>
-                    <div class="story" onclick="viewStory(2)">
+                    <div class="story" onclick="viewStory('sara')">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=2" alt="قصة">
                         </div>
                         <div class="story-username">sara</div>
                     </div>
-                    <div class="story" onclick="viewStory(3)">
+                    <div class="story" onclick="viewStory('mohamed')">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=3" alt="قصة">
                         </div>
                         <div class="story-username">mohamed</div>
                     </div>
-                    <div class="story" onclick="viewStory(4)">
+                    <div class="story" onclick="viewStory('fatima')">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=4" alt="قصة">
                         </div>
@@ -890,6 +917,15 @@
                                 <span class="post-username-caption">tech_lover</span>
                                 أجمل لحظات السفر 🚀✨
                             </div>
+                            <!-- التعليقات -->
+                            <div class="post-caption">
+                                <span class="post-username-caption">sara</span>
+                                رائع! أين هذه الأماكن؟ 🌍
+                            </div>
+                            <div class="post-caption">
+                                <span class="post-username-caption">ahmed</span>
+                                التصوير جميل جداً 📸
+                            </div>
                         </div>
                         <div class="post-time">منذ ساعتين</div>
                         <div class="add-comment">
@@ -936,6 +972,15 @@
                                 <span class="post-username-caption">foodie</span>
                                 وجبة العشاء الليلة 🍝👌
                             </div>
+                            <!-- التعليقات -->
+                            <div class="post-caption">
+                                <span class="post-username-caption">mohamed</span>
+                                يبدو لذيذاً! ما هي الوصفة؟ 👨‍🍳
+                            </div>
+                            <div class="post-caption">
+                                <span class="post-username-caption">fatima</span>
+                                أنا جائعة الآن 😋
+                            </div>
                         </div>
                         <div class="post-time">منذ 5 ساعات</div>
                         <div class="add-comment">
@@ -980,7 +1025,7 @@
                         <i class="fas fa-video"></i>
                         <span>فيديو جديد</span>
                     </div>
-                    <div class="create-option" onclick="goLive()">
+                    <div class="create-option" onclick="startLiveStream()">
                         <i class="fas fa-broadcast-tower"></i>
                         <span>بث مباشر</span>
                     </div>
@@ -999,7 +1044,7 @@
             <div class="page live-page">
                 <div class="live-grid">
                     <!-- بث مباشر 1 -->
-                    <div class="live-card" onclick="joinLive(1)">
+                    <div class="live-card" onclick="joinLive('gamers_live')">
                         <div class="live-preview">
                             <div class="live-badge-live">مباشر</div>
                             <div class="live-viewers">1.2K 👁️</div>
@@ -1018,7 +1063,7 @@
                     </div>
 
                     <!-- بث مباشر 2 -->
-                    <div class="live-card" onclick="joinLive(2)">
+                    <div class="live-card" onclick="joinLive('cooking_tv')">
                         <div class="live-preview">
                             <div class="live-badge-live">مباشر</div>
                             <div class="live-viewers">856 👁️</div>
@@ -1035,6 +1080,44 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- بث مباشر 3 -->
+                    <div class="live-card" onclick="joinLive('music_daily')">
+                        <div class="live-preview">
+                            <div class="live-badge-live">مباشر</div>
+                            <div class="live-viewers">2.4K 👁️</div>
+                        </div>
+                        <div class="live-info">
+                            <div class="live-user">
+                                <img src="https://i.pravatar.cc/150?img=9" alt="مستخدم" class="live-avatar">
+                                <div class="live-username">music_daily</div>
+                            </div>
+                            <div class="live-title">غناء مباشر مع التفاعل</div>
+                            <div class="live-tags">
+                                <span class="live-tag">موسيقى</span>
+                                <span class="live-tag">غناء</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بث مباشر 4 -->
+                    <div class="live-card" onclick="joinLive('fitness_coach')">
+                        <div class="live-preview">
+                            <div class="live-badge-live">مباشر</div>
+                            <div class="live-viewers">632 👁️</div>
+                        </div>
+                        <div class="live-info">
+                            <div class="live-user">
+                                <img src="https://i.pravatar.cc/150?img=10" alt="مستخدم" class="live-avatar">
+                                <div class="live-username">fitness_coach</div>
+                            </div>
+                            <div class="live-title">تمرين لياقة للمبتدئين</div>
+                            <div class="live-tags">
+                                <span class="live-tag">رياضة</span>
+                                <span class="live-tag">لياقة</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1044,8 +1127,8 @@
                     <div class="profile-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div class="profile-username">زائر</div>
-                    <div class="profile-bio">انضم إلى Soshial M لتجربة أفضل</div>
+                    <div class="profile-username" id="profileUsername">زائر</div>
+                    <div class="profile-bio" id="profileBio">انضم إلى Soshial M لتجربة أفضل</div>
                     <div class="profile-stats">
                         <div class="profile-stat" onclick="showPosts()">
                             <span class="stat-number">0</span>
@@ -1063,41 +1146,63 @@
                 </div>
 
                 <div class="profile-actions">
-                    <button class="profile-btn btn-primary" onclick="showLogin()">تسجيل الدخول</button>
-                    <button class="profile-btn btn-secondary" onclick="showRegister()">إنشاء حساب</button>
+                    <button class="profile-btn btn-primary" onclick="showLoginForm()">تسجيل الدخول</button>
+                    <button class="profile-btn btn-secondary" onclick="showRegisterForm()">إنشاء حساب</button>
                 </div>
 
-                <!-- قسم العملات -->
-                <div class="coins-section">
-                    <div class="coins-header">
-                        <div class="coins-title">رصيد العملات</div>
-                        <div class="coins-balance">0 💎</div>
+                <!-- نموذج تسجيل الدخول -->
+                <div class="login-form" id="loginForm" style="display: none;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">تسجيل الدخول</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="اسم المستخدم أو البريد الإلكتروني" id="loginUsername">
                     </div>
-                    <div class="coins-grid">
-                        <div class="coin-package" data-amount="500" data-price="1" onclick="selectPackage(this)">
-                            <div class="coin-amount">500 💎</div>
-                            <div class="coin-price">1 دولار</div>
-                        </div>
-                        <div class="coin-package" data-amount="1000" data-price="5" onclick="selectPackage(this)">
-                            <div class="coin-amount">1,000 💎</div>
-                            <div class="coin-price">5 دولار</div>
-                        </div>
-                        <div class="coin-package" data-amount="2500" data-price="10" onclick="selectPackage(this)">
-                            <div class="coin-amount">2,500 💎</div>
-                            <div class="coin-price">10 دولار</div>
-                        </div>
-                        <div class="coin-package" data-amount="5000" data-price="50" onclick="selectPackage(this)">
-                            <div class="coin-amount">5,000 💎</div>
-                            <div class="coin-price">50 دولار</div>
-                        </div>
+                    <div class="form-group">
+                        <input type="password" class="form-input" placeholder="كلمة السر" id="loginPassword">
                     </div>
+                    <button class="pay-btn" onclick="login()" style="margin-bottom: 12px;">تسجيل الدخول</button>
+                    <button class="profile-btn btn-secondary" onclick="loginWithGoogle()">
+                        <i class="fab fa-google"></i> تسجيل الدخول بـ Google
+                    </button>
                 </div>
 
-                <!-- نموذج الدفع -->
-                <div class="payment-section">
-                    <input type="text" class="payment-input" placeholder="الاسم الكامل" id="paymentName">
-                    <input type="tel" class="payment-input" placeholder="رقم الهاتف" id="paymentPhone">
-                    <button class="pay-btn" onclick="processPayment()">الدفع عبر واتساب</button>
+                <!-- بعد تسجيل الدخول -->
+                <div id="loggedInContent" style="display: none;">
+                    <!-- قسم العملات -->
+                    <div class="coins-section">
+                        <div class="coins-header">
+                            <div class="coins-title">رصيد العملات</div>
+                            <div class="coins-balance" id="coinsBalance">0 💎</div>
+                        </div>
+                        <div class="coins-grid">
+                            <div class="coin-package" data-amount="500" data-price="1" onclick="selectPackage(this)">
+                                <div class="coin-amount">500 💎</div>
+                                <div class="coin-price">1 دولار</div>
+                            </div>
+                            <div class="coin-package" data-amount="1000" data-price="5" onclick="selectPackage(this)">
+                                <div class="coin-amount">1,000 💎</div>
+                                <div class="coin-price">5 دولار</div>
+                            </div>
+                            <div class="coin-package" data-amount="2500" data-price="10" onclick="selectPackage(this)">
+                                <div class="coin-amount">2,500 💎</div>
+                                <div class="coin-price">10 دولار</div>
+                            </div>
+                            <div class="coin-package" data-amount="5000" data-price="50" onclick="selectPackage(this)">
+                                <div class="coin-amount">5,000 💎</div>
+                                <div class="coin-price">50 دولار</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- نموذج الدفع -->
+                    <div class="payment-section">
+                        <input type="text" class="payment-input" placeholder="الاسم الكامل" id="paymentName">
+                        <input type="tel" class="payment-input" placeholder="رقم الهاتف" id="paymentPhone">
+                        <button class="pay-btn" onclick="processPayment()">الدفع عبر واتساب</button>
+                    </div>
+
+                    <button class="profile-btn btn-secondary" onclick="logout()" style="margin-top: 16px;">
+                        تسجيل الخروج
+                    </button>
                 </div>
             </div>
         </div>
@@ -1124,44 +1229,6 @@
             <div class="tab-item" data-page="profile" onclick="showPage('profile')">
                 <i class="fas fa-user"></i>
                 <span>حسابي</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة التعليقات -->
-    <div class="modal" id="commentsModal">
-        <div class="modal-content">
-            <div class="modal-title">التعليقات</div>
-            <div class="comments-section">
-                <div class="comment">
-                    <div class="comment-avatar">A</div>
-                    <div class="comment-content">
-                        <div class="comment-username">ahmed</div>
-                        <div class="comment-text">واو! هذا رائع جداً 👏</div>
-                        <div class="comment-actions">
-                            <span class="comment-action" onclick="likeComment(this)">إعجاب</span>
-                            <span class="comment-action" onclick="replyComment(this)">رد</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment">
-                    <div class="comment-avatar">S</div>
-                    <div class="comment-content">
-                        <div class="comment-username">sara</div>
-                        <div class="comment-text">محتوى جميل، استمر 💫</div>
-                        <div class="comment-actions">
-                            <span class="comment-action" onclick="likeComment(this)">إعجاب</span>
-                            <span class="comment-action" onclick="replyComment(this)">رد</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="add-comment">
-                <input type="text" class="comment-input" placeholder="اكتب تعليقًا..." id="modalComment">
-                <button class="comment-btn" onclick="addModalComment()">نشر</button>
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-btn secondary" onclick="closeModal('commentsModal')">إغلاق</button>
             </div>
         </div>
     </div>
@@ -1242,22 +1309,17 @@
                 
                 const newComment = document.createElement('div');
                 newComment.className = 'post-caption';
-                newComment.innerHTML = `<span class="post-username-caption">أنت</span> ${commentText}`;
+                const username = currentUser ? currentUser.username : 'زائر';
+                newComment.innerHTML = `<span class="post-username-caption">${username}</span> ${commentText}`;
                 
                 commentsContainer.appendChild(newComment);
                 input.value = '';
-                
-                // تحديث عدد التعليقات
-                const commentBtn = post.querySelector('.fa-comment').closest('.post-action');
-                alert('تم إضافة تعليقك بنجاح! 💫');
             }
         }
 
         // 📤 المشاركة
         function sharePost() {
-            const options = ['مشاركة إلى Stories', 'مشاركة إلى Messenger', 'نسخ الرابط', 'مشاركة إلى WhatsApp'];
-            const selected = options[Math.floor(Math.random() * options.length)];
-            alert(`تم ${selected} بنجاح! 📲`);
+            alert('تم مشاركة المنشور بنجاح! 📲');
         }
 
         // 💾 الحفظ
@@ -1277,8 +1339,8 @@
         }
 
         // 📹 القصص
-        function viewStory(storyId) {
-            alert(`عرض قصة المستخدم ${storyId} 📖`);
+        function viewStory(username) {
+            alert(`تشاهد الآن قصة ${username} 📖`);
         }
 
         // 🎥 الفيديوهات
@@ -1298,7 +1360,7 @@
         }
 
         function showVideoComments() {
-            showModal('commentsModal');
+            alert('نظام التعليقات للفيديوهات يعمل بنجاح! 💬');
         }
 
         function shareVideo() {
@@ -1307,36 +1369,88 @@
 
         // ➕ الإنشاء
         function createPost(type) {
-            alert(`بدء إنشاء ${type === 'video' ? 'فيديو' : 'صورة'} جديد 🎨`);
+            alert(`بدأت في إنشاء ${type === 'video' ? 'فيديو' : 'صورة'} جديد 🎨`);
         }
 
-        function goLive() {
-            alert('بدء البث المباشر الآن! 🎥🔴');
+        function startLiveStream() {
+            alert('بدأ البث المباشر بنجاح! 🎥🔴 انتظر المشاهدين...');
         }
 
         function createStory() {
-            alert('إنشاء قصة جديدة ✨');
+            alert('قمت بإنشاء قصة جديدة ✨');
         }
 
         // 🔴 البث المباشر
-        function joinLive(liveId) {
-            alert(`انضمام إلى البث المباشر ${liveId} 📡`);
+        function joinLive(username) {
+            alert(`انضممت إلى البث المباشر لـ ${username} 📡`);
         }
 
         // 👤 الملف الشخصي
-        function showLogin() {
-            alert('نظام تسجيل الدخول - يمكنك استخدام أي بيانات للدخول 🔐');
-            document.querySelector('.profile-username').textContent = 'مستخدم';
-            document.querySelector('.profile-bio').textContent = 'مرحباً بك في Soshial M!';
-            document.querySelector('.coins-balance').textContent = '150 💎';
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.querySelector('.profile-actions').style.display = 'none';
         }
 
-        function showRegister() {
-            alert('إنشاء حساب جديد - سجل الآن! 🚀');
+        function showRegisterForm() {
+            alert('أنشئ حسابك الآن! اختر اسم مستخدم وكلمة سر 🚀');
+            // محاكاة إنشاء حساب
+            const username = prompt('ادخل اسم المستخدم:');
+            if (username) {
+                loginUser(username, 'user');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (username && password) {
+                loginUser(username, password);
+            } else {
+                alert('يرجى ملء جميع الحقول');
+            }
+        }
+
+        function loginWithGoogle() {
+            loginUser('مستخدم_جوجل', 'google');
+        }
+
+        function loginUser(username, method) {
+            currentUser = {
+                username: username,
+                coins: 150
+            };
+            
+            document.getElementById('profileUsername').textContent = username;
+            document.getElementById('profileBio').textContent = `مرحباً بك في Soshial M! - مسجل بـ ${method}`;
+            document.getElementById('coinsBalance').textContent = '150 💎';
+            
+            document.getElementById('loginForm').style.display = 'none';
+            document.querySelector('.profile-actions').style.display = 'none';
+            document.getElementById('loggedInContent').style.display = 'block';
+            
+            // تحديث الإحصائيات
+            document.querySelectorAll('.stat-number')[0].textContent = '5';
+            document.querySelectorAll('.stat-number')[1].textContent = '127';
+            document.querySelectorAll('.stat-number')[2].textContent = '89';
+            
+            alert(`تم تسجيل الدخول بنجاح! مرحباً ${username} 👋`);
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('loggedInContent').style.display = 'none';
+            document.querySelector('.profile-actions').style.display = 'flex';
+            document.getElementById('profileUsername').textContent = 'زائر';
+            document.getElementById('profileBio').textContent = 'انضم إلى Soshial M لتجربة أفضل';
+            document.querySelectorAll('.stat-number')[0].textContent = '0';
+            document.querySelectorAll('.stat-number')[1].textContent = '0';
+            document.querySelectorAll('.stat-number')[2].textContent = '0';
+            alert('تم تسجيل الخروج بنجاح');
         }
 
         function showPosts() {
-            alert('عرض جميع المنشورات 📸');
+            alert('عرض جميع منشوراتك 📸');
         }
 
         function showFollowers() {
@@ -1360,6 +1474,11 @@
         }
 
         function processPayment() {
+            if (!currentUser) {
+                alert('يرجى تسجيل الدخول أولاً');
+                return;
+            }
+
             if (!selectedCoinPackage) {
                 alert('⚠️ يرجى اختيار باقة العملات أولاً');
                 return;
@@ -1377,6 +1496,7 @@
 
 👤 الاسم: ${name}
 📞 رقم الهاتف: ${phone}
+👤 المستخدم: ${currentUser.username}
 💰 الباقة: ${selectedCoinPackage.amount} عملة
 💵 السعر: ${selectedCoinPackage.price} دولار
 📅 التاريخ: ${new Date().toLocaleString()}
@@ -1389,62 +1509,10 @@
             alert('📲 سيتم تحويلك إلى واتساب لإكمال عملية الدفع. سيتم إضافة العملات بعد التأكيد! 🎉');
         }
 
-        // 🪟 النوافذ المنبثقة
-        function showModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        function addModalComment() {
-            const input = document.getElementById('modalComment');
-            const commentText = input.value.trim();
-            
-            if (commentText) {
-                const commentsSection = document.querySelector('#commentsModal .comments-section');
-                const newComment = document.createElement('div');
-                newComment.className = 'comment';
-                newComment.innerHTML = `
-                    <div class="comment-avatar">Y</div>
-                    <div class="comment-content">
-                        <div class="comment-username">أنت</div>
-                        <div class="comment-text">${commentText}</div>
-                        <div class="comment-actions">
-                            <span class="comment-action" onclick="likeComment(this)">إعجاب</span>
-                            <span class="comment-action" onclick="replyComment(this)">رد</span>
-                        </div>
-                    </div>
-                `;
-                commentsSection.appendChild(newComment);
-                input.value = '';
-            }
-        }
-
-        function likeComment(element) {
-            alert('تم الإعجاب بالتعليق ❤️');
-        }
-
-        function replyComment(element) {
-            const commentText = element.closest('.comment').querySelector('.comment-text').textContent;
-            document.getElementById('modalComment').value = `رد على: ${commentText} `;
-            document.getElementById('modalComment').focus();
-        }
-
         // خيارات المنشور
         function showPostOptions() {
-            const options = ['الإبلاغ', 'إخفاء', 'حظر', 'نسخ الرابط'];
-            const selected = options[Math.floor(Math.random() * options.length)];
-            alert(`خيارات المنشور: ${selected} ⚙️`);
+            alert('خيارات المنشور: \n• الإبلاغ\n• إخفاء\n• حظر\n• نسخ الرابط ⚙️');
         }
-
-        // إغلاق النوافذ بالضغط خارجها
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
