@@ -74,6 +74,7 @@ body {
 
 .nav-item.active {
     font-weight: 600;
+    background-color: #f0f0f0;
 }
 
 .nav-item i {
@@ -193,6 +194,16 @@ body {
     font-size: 24px;
     margin-left: 15px;
     cursor: pointer;
+    transition: color 0.2s;
+}
+
+.post-actions-left i:hover {
+    color: var(--gray);
+}
+
+.post-actions-right i {
+    font-size: 24px;
+    cursor: pointer;
 }
 
 .post-likes {
@@ -239,6 +250,10 @@ body {
     opacity: 0.5;
 }
 
+.add-comment button:hover {
+    opacity: 1;
+}
+
 /* شريط التنقل السفلي */
 .bottom-nav {
     display: none;
@@ -259,6 +274,17 @@ body {
     align-items: center;
     font-size: 10px;
     cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.bottom-nav-item:hover {
+    background-color: #f0f0f0;
+}
+
+.bottom-nav-item.active {
+    color: var(--primary);
 }
 
 .bottom-nav-item i {
@@ -284,6 +310,12 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.live-card:hover {
+    transform: translateY(-5px);
 }
 
 .live-preview {
@@ -377,6 +409,7 @@ body {
 
 .profile-stat {
     margin-left: 40px;
+    cursor: pointer;
 }
 
 .profile-stat span {
@@ -404,6 +437,11 @@ body {
     color: var(--gray);
     display: flex;
     align-items: center;
+    transition: color 0.2s;
+}
+
+.profile-tab:hover {
+    color: #262626;
 }
 
 .profile-tab.active {
@@ -428,6 +466,11 @@ body {
     background: #f0f0f0;
     position: relative;
     cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.profile-post:hover {
+    opacity: 0.8;
 }
 
 .profile-post img {
@@ -464,6 +507,12 @@ body {
     align-items: center;
     padding: 12px 0;
     border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.settings-item:hover {
+    background-color: #f8f9fa;
 }
 
 .settings-item:last-child {
@@ -507,6 +556,12 @@ body {
     border-radius: 4px;
     background: #fafafa;
     font-size: 12px;
+    transition: border-color 0.2s;
+}
+
+.auth-form input:focus {
+    border-color: var(--primary);
+    outline: none;
 }
 
 .auth-button {
@@ -518,6 +573,11 @@ body {
     font-weight: 600;
     margin: 10px 0;
     cursor: pointer;
+    transition: background 0.2s;
+}
+
+.auth-button:hover {
+    background: var(--secondary);
 }
 
 .auth-divider {
@@ -556,6 +616,10 @@ body {
     text-decoration: none;
 }
 
+.auth-link:hover {
+    text-decoration: underline;
+}
+
 /* صفحة العملات */
 .coins-page {
     display: none;
@@ -585,6 +649,7 @@ body {
 
 .coin-package:hover {
     border-color: var(--primary);
+    transform: scale(1.05);
 }
 
 .coin-package.selected {
@@ -614,6 +679,12 @@ body {
     margin-bottom: 10px;
     border: 1px solid var(--border);
     border-radius: 4px;
+    font-size: 14px;
+}
+
+.payment-form input:focus {
+    border-color: var(--primary);
+    outline: none;
 }
 
 .pay-button {
@@ -626,6 +697,16 @@ body {
     width: 100%;
     cursor: pointer;
     margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.pay-button:hover {
+    background: #00a843;
+}
+
+.pay-button:disabled {
+    background: var(--gray);
+    cursor: not-allowed;
 }
 
 /* التكيف مع الشاشات الصغيرة */
@@ -663,5 +744,19 @@ body {
     }
     .coin-packages {
         grid-template-columns: 1fr;
+    }
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-avatar {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+    .profile-stats {
+        justify-content: center;
+    }
+    .profile-stat {
+        margin: 0 15px;
     }
 }
