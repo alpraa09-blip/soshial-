@@ -56,6 +56,7 @@
             padding: 8px 16px;
             color: var(--text-secondary);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .tab-item.active {
@@ -116,6 +117,7 @@
             flex-direction: column;
             align-items: center;
             min-width: 70px;
+            cursor: pointer;
         }
 
         .story-avatar {
@@ -179,6 +181,7 @@
 
         .post-options {
             color: var(--text-secondary);
+            cursor: pointer;
         }
 
         .post-media {
@@ -214,6 +217,7 @@
             color: var(--text);
             font-size: 24px;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .post-action.active {
@@ -243,6 +247,33 @@
             color: var(--text-secondary);
             font-size: 12px;
             padding: 0 16px 16px;
+        }
+
+        .add-comment {
+            display: flex;
+            border-top: 1px solid var(--border);
+            padding: 12px 16px;
+            gap: 12px;
+        }
+
+        .comment-input {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 16px;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .comment-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-weight: 600;
+            cursor: pointer;
         }
 
         /* صفحة الفيديوهات */
@@ -301,6 +332,7 @@
             flex-direction: column;
             align-items: center;
             color: var(--text);
+            cursor: pointer;
         }
 
         .video-action i {
@@ -313,6 +345,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-action i:hover {
+            transform: scale(1.1);
         }
 
         .video-action span {
@@ -320,9 +357,49 @@
             font-weight: 500;
         }
 
+        /* صفحة الإنشاء */
+        .create-page {
+            padding: 20px;
+            background: var(--background);
+        }
+
+        .create-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .create-option {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .create-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .create-option i {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .create-option span {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
         /* صفحة البث المباشر */
         .live-page {
             padding: 16px;
+            background: var(--background);
         }
 
         .live-grid {
@@ -336,6 +413,12 @@
             border-radius: 16px;
             overflow: hidden;
             position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .live-card:hover {
+            transform: scale(1.05);
         }
 
         .live-preview {
@@ -413,6 +496,7 @@
         /* صفحة الملف الشخصي */
         .profile-page {
             padding: 16px;
+            background: var(--background);
         }
 
         .profile-header {
@@ -454,6 +538,7 @@
 
         .profile-stat {
             text-align: center;
+            cursor: pointer;
         }
 
         .stat-number {
@@ -490,9 +575,17 @@
             color: white;
         }
 
+        .btn-primary:hover {
+            background: #FF1C42;
+        }
+
         .btn-secondary {
             background: var(--surface);
             color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #2C2C2E;
         }
 
         .coins-section {
@@ -534,6 +627,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+        }
+
+        .coin-package:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
         }
 
         .coin-package.selected {
@@ -591,6 +689,64 @@
             background: #FF1C42;
         }
 
+        /* التعليقات */
+        .comments-section {
+            background: var(--surface);
+            margin: 16px;
+            border-radius: 16px;
+            padding: 16px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .comment {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comment-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-username {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .comment-action {
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+        }
+
         /* إخفاء شريط التمرير */
         .content::-webkit-scrollbar {
             display: none;
@@ -599,6 +755,64 @@
         .content {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        /* النوافذ المنبثقة */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .modal-btn.secondary {
+            background: var(--border);
+            color: var(--text);
         }
     </style>
 </head>
@@ -610,25 +824,25 @@
             <div class="page home-page active">
                 <!-- القصص -->
                 <div class="stories">
-                    <div class="story">
+                    <div class="story" onclick="viewStory(1)">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=1" alt="قصة">
                         </div>
                         <div class="story-username">ahmed</div>
                     </div>
-                    <div class="story">
+                    <div class="story" onclick="viewStory(2)">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=2" alt="قصة">
                         </div>
                         <div class="story-username">sara</div>
                     </div>
-                    <div class="story">
+                    <div class="story" onclick="viewStory(3)">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=3" alt="قصة">
                         </div>
                         <div class="story-username">mohamed</div>
                     </div>
-                    <div class="story">
+                    <div class="story" onclick="viewStory(4)">
                         <div class="story-avatar">
                             <img src="https://i.pravatar.cc/150?img=4" alt="قصة">
                         </div>
@@ -645,7 +859,7 @@
                                 <img src="https://i.pravatar.cc/150?img=5" alt="مستخدم" class="post-avatar">
                                 <div class="post-username">tech_lover</div>
                             </div>
-                            <div class="post-options">
+                            <div class="post-options" onclick="showPostOptions()">
                                 <i class="fas fa-ellipsis-h"></i>
                             </div>
                         </div>
@@ -654,18 +868,18 @@
                         </div>
                         <div class="post-actions">
                             <div class="post-actions-left">
-                                <div class="post-action">
+                                <div class="post-action" onclick="toggleLike(this)">
                                     <i class="far fa-heart"></i>
                                 </div>
-                                <div class="post-action">
+                                <div class="post-action" onclick="focusComment(this)">
                                     <i class="far fa-comment"></i>
                                 </div>
-                                <div class="post-action">
+                                <div class="post-action" onclick="sharePost()">
                                     <i class="far fa-paper-plane"></i>
                                 </div>
                             </div>
                             <div class="post-actions-right">
-                                <div class="post-action">
+                                <div class="post-action" onclick="toggleSave(this)">
                                     <i class="far fa-bookmark"></i>
                                 </div>
                             </div>
@@ -678,6 +892,10 @@
                             </div>
                         </div>
                         <div class="post-time">منذ ساعتين</div>
+                        <div class="add-comment">
+                            <input type="text" class="comment-input" placeholder="أضف تعليقًا..." onkeypress="handleCommentKeypress(event, this)">
+                            <button class="comment-btn" onclick="addComment(this)">نشر</button>
+                        </div>
                     </div>
 
                     <!-- منشور 2 -->
@@ -687,7 +905,7 @@
                                 <img src="https://i.pravatar.cc/150?img=6" alt="مستخدم" class="post-avatar">
                                 <div class="post-username">foodie</div>
                             </div>
-                            <div class="post-options">
+                            <div class="post-options" onclick="showPostOptions()">
                                 <i class="fas fa-ellipsis-h"></i>
                             </div>
                         </div>
@@ -696,18 +914,18 @@
                         </div>
                         <div class="post-actions">
                             <div class="post-actions-left">
-                                <div class="post-action">
+                                <div class="post-action" onclick="toggleLike(this)">
                                     <i class="far fa-heart"></i>
                                 </div>
-                                <div class="post-action">
+                                <div class="post-action" onclick="focusComment(this)">
                                     <i class="far fa-comment"></i>
                                 </div>
-                                <div class="post-action">
+                                <div class="post-action" onclick="sharePost()">
                                     <i class="far fa-paper-plane"></i>
                                 </div>
                             </div>
                             <div class="post-actions-right">
-                                <div class="post-action">
+                                <div class="post-action" onclick="toggleSave(this)">
                                     <i class="far fa-bookmark"></i>
                                 </div>
                             </div>
@@ -720,6 +938,10 @@
                             </div>
                         </div>
                         <div class="post-time">منذ 5 ساعات</div>
+                        <div class="add-comment">
+                            <input type="text" class="comment-input" placeholder="أضف تعليقًا..." onkeypress="handleCommentKeypress(event, this)">
+                            <button class="comment-btn" onclick="addComment(this)">نشر</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -727,28 +949,48 @@
             <!-- صفحة الفيديوهات -->
             <div class="page shorts-page">
                 <div class="short-video">
-                    <video controls autoplay muted>
-                        <source src="#" type="video/mp4">
-                    </video>
                     <div class="video-overlay">
                         <div class="video-info">
-                            <div class="video-username">@creator</div>
-                            <div class="video-description">فيديو رائع عن السفر حول العالم ✈️</div>
+                            <div class="video-username">@tech_review</div>
+                            <div class="video-description">أقوى الهواتف في 2024 📱 تعرف عليها الآن!</div>
                         </div>
                     </div>
                     <div class="video-actions">
-                        <div class="video-action">
+                        <div class="video-action" onclick="toggleVideoLike(this)">
                             <i class="fas fa-heart"></i>
                             <span>12.4K</span>
                         </div>
-                        <div class="video-action">
+                        <div class="video-action" onclick="showVideoComments()">
                             <i class="fas fa-comment"></i>
                             <span>1.2K</span>
                         </div>
-                        <div class="video-action">
+                        <div class="video-action" onclick="shareVideo()">
                             <i class="fas fa-share"></i>
                             <span>مشاركة</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة الإنشاء -->
+            <div class="page create-page">
+                <h3 style="text-align: center; margin-bottom: 20px;">ماذا تريد إنشاء؟</h3>
+                <div class="create-options">
+                    <div class="create-option" onclick="createPost('video')">
+                        <i class="fas fa-video"></i>
+                        <span>فيديو جديد</span>
+                    </div>
+                    <div class="create-option" onclick="goLive()">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span>بث مباشر</span>
+                    </div>
+                    <div class="create-option" onclick="createPost('photo')">
+                        <i class="fas fa-images"></i>
+                        <span>صورة</span>
+                    </div>
+                    <div class="create-option" onclick="createStory()">
+                        <i class="fas fa-pen"></i>
+                        <span>قصة</span>
                     </div>
                 </div>
             </div>
@@ -757,7 +999,7 @@
             <div class="page live-page">
                 <div class="live-grid">
                     <!-- بث مباشر 1 -->
-                    <div class="live-card">
+                    <div class="live-card" onclick="joinLive(1)">
                         <div class="live-preview">
                             <div class="live-badge-live">مباشر</div>
                             <div class="live-viewers">1.2K 👁️</div>
@@ -776,7 +1018,7 @@
                     </div>
 
                     <!-- بث مباشر 2 -->
-                    <div class="live-card">
+                    <div class="live-card" onclick="joinLive(2)">
                         <div class="live-preview">
                             <div class="live-badge-live">مباشر</div>
                             <div class="live-viewers">856 👁️</div>
@@ -805,15 +1047,15 @@
                     <div class="profile-username">زائر</div>
                     <div class="profile-bio">انضم إلى Soshial M لتجربة أفضل</div>
                     <div class="profile-stats">
-                        <div class="profile-stat">
+                        <div class="profile-stat" onclick="showPosts()">
                             <span class="stat-number">0</span>
                             <span class="stat-label">منشور</span>
                         </div>
-                        <div class="profile-stat">
+                        <div class="profile-stat" onclick="showFollowers()">
                             <span class="stat-number">0</span>
                             <span class="stat-label">متابعون</span>
                         </div>
-                        <div class="profile-stat">
+                        <div class="profile-stat" onclick="showFollowing()">
                             <span class="stat-number">0</span>
                             <span class="stat-label">متابَع</span>
                         </div>
@@ -822,7 +1064,7 @@
 
                 <div class="profile-actions">
                     <button class="profile-btn btn-primary" onclick="showLogin()">تسجيل الدخول</button>
-                    <button class="profile-btn btn-secondary">إنشاء حساب</button>
+                    <button class="profile-btn btn-secondary" onclick="showRegister()">إنشاء حساب</button>
                 </div>
 
                 <!-- قسم العملات -->
@@ -832,19 +1074,19 @@
                         <div class="coins-balance">0 💎</div>
                     </div>
                     <div class="coins-grid">
-                        <div class="coin-package" data-amount="500" data-price="1">
+                        <div class="coin-package" data-amount="500" data-price="1" onclick="selectPackage(this)">
                             <div class="coin-amount">500 💎</div>
                             <div class="coin-price">1 دولار</div>
                         </div>
-                        <div class="coin-package" data-amount="1000" data-price="5">
+                        <div class="coin-package" data-amount="1000" data-price="5" onclick="selectPackage(this)">
                             <div class="coin-amount">1,000 💎</div>
                             <div class="coin-price">5 دولار</div>
                         </div>
-                        <div class="coin-package" data-amount="2500" data-price="10">
+                        <div class="coin-package" data-amount="2500" data-price="10" onclick="selectPackage(this)">
                             <div class="coin-amount">2,500 💎</div>
                             <div class="coin-price">10 دولار</div>
                         </div>
-                        <div class="coin-package" data-amount="5000" data-price="50">
+                        <div class="coin-package" data-amount="5000" data-price="50" onclick="selectPackage(this)">
                             <div class="coin-amount">5,000 💎</div>
                             <div class="coin-price">50 دولار</div>
                         </div>
@@ -862,26 +1104,64 @@
 
         <!-- التبويبات السفلية -->
         <div class="tab-bar">
-            <div class="tab-item active" data-page="home">
+            <div class="tab-item active" data-page="home" onclick="showPage('home')">
                 <i class="fas fa-home"></i>
                 <span>الرئيسية</span>
             </div>
-            <div class="tab-item" data-page="shorts">
+            <div class="tab-item" data-page="shorts" onclick="showPage('shorts')">
                 <i class="fas fa-play-circle"></i>
                 <span>فيديوهات</span>
             </div>
-            <div class="tab-item" data-page="create">
+            <div class="tab-item" data-page="create" onclick="showPage('create')">
                 <i class="fas fa-plus"></i>
                 <span>إنشاء</span>
             </div>
-            <div class="tab-item" data-page="live">
+            <div class="tab-item" data-page="live" onclick="showPage('live')">
                 <i class="fas fa-broadcast-tower"></i>
                 <span>لايف</span>
                 <div class="live-badge">مباشر</div>
             </div>
-            <div class="tab-item" data-page="profile">
+            <div class="tab-item" data-page="profile" onclick="showPage('profile')">
                 <i class="fas fa-user"></i>
                 <span>حسابي</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة التعليقات -->
+    <div class="modal" id="commentsModal">
+        <div class="modal-content">
+            <div class="modal-title">التعليقات</div>
+            <div class="comments-section">
+                <div class="comment">
+                    <div class="comment-avatar">A</div>
+                    <div class="comment-content">
+                        <div class="comment-username">ahmed</div>
+                        <div class="comment-text">واو! هذا رائع جداً 👏</div>
+                        <div class="comment-actions">
+                            <span class="comment-action" onclick="likeComment(this)">إعجاب</span>
+                            <span class="comment-action" onclick="replyComment(this)">رد</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-avatar">S</div>
+                    <div class="comment-content">
+                        <div class="comment-username">sara</div>
+                        <div class="comment-text">محتوى جميل، استمر 💫</div>
+                        <div class="comment-actions">
+                            <span class="comment-action" onclick="likeComment(this)">إعجاب</span>
+                            <span class="comment-action" onclick="replyComment(this)">رد</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="add-comment">
+                <input type="text" class="comment-input" placeholder="اكتب تعليقًا..." id="modalComment">
+                <button class="comment-btn" onclick="addModalComment()">نشر</button>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" onclick="closeModal('commentsModal')">إغلاق</button>
             </div>
         </div>
     </div>
@@ -890,57 +1170,15 @@
         // بيانات التطبيق
         let currentUser = null;
         let selectedCoinPackage = null;
+        let currentPage = 'home';
 
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Soshial M - التطبيق جاهز');
-            setupEventListeners();
+            console.log('Soshial M - التطبيق جاهز للعمل!');
+            showPage('home');
         });
 
-        function setupEventListeners() {
-            // التنقل بين التبويبات
-            const tabItems = document.querySelectorAll('.tab-item');
-            tabItems.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const page = this.getAttribute('data-page');
-                    showPage(page);
-                });
-            });
-
-            // تفعيل الإعجابات
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('fa-heart')) {
-                    const heartIcon = e.target;
-                    const isLiked = heartIcon.classList.contains('fas');
-                    
-                    if (isLiked) {
-                        heartIcon.classList.remove('fas');
-                        heartIcon.classList.add('far');
-                        heartIcon.style.color = '';
-                    } else {
-                        heartIcon.classList.remove('far');
-                        heartIcon.classList.add('fas');
-                        heartIcon.style.color = '#FF2D55';
-                    }
-                    
-                    updateLikesCount(heartIcon, !isLiked);
-                }
-            });
-
-            // اختيار باقات العملات
-            const coinPackages = document.querySelectorAll('.coin-package');
-            coinPackages.forEach(pkg => {
-                pkg.addEventListener('click', function() {
-                    coinPackages.forEach(p => p.classList.remove('selected'));
-                    this.classList.add('selected');
-                    selectedCoinPackage = {
-                        amount: this.getAttribute('data-amount'),
-                        price: this.getAttribute('data-price')
-                    };
-                });
-            });
-        }
-
+        // عرض الصفحة
         function showPage(page) {
             // إخفاء جميع الصفحات
             document.querySelectorAll('.page').forEach(p => {
@@ -958,28 +1196,172 @@
             
             if (targetPage) targetPage.classList.add('active');
             if (targetTab) targetTab.classList.add('active');
+            
+            currentPage = page;
         }
 
-        function updateLikesCount(heartIcon, isAdding) {
-            const post = heartIcon.closest('.post');
-            const likesElement = post.querySelector('.post-likes');
-            const currentText = likesElement.textContent;
-            const currentLikes = parseInt(currentText.replace(/\D/g, '')) || 0;
+        // ❤️ تفعيل الإعجابات
+        function toggleLike(element) {
+            const heartIcon = element.querySelector('i');
+            const isLiked = heartIcon.classList.contains('fas');
+            const likesElement = element.closest('.post').querySelector('.post-likes');
+            const currentLikes = parseInt(likesElement.textContent.replace(/\D/g, '')) || 0;
             
-            if (isAdding) {
-                likesElement.textContent = (currentLikes + 1).toLocaleString() + ' إعجاب';
-            } else {
+            if (isLiked) {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+                heartIcon.style.color = '';
                 likesElement.textContent = (currentLikes - 1).toLocaleString() + ' إعجاب';
+            } else {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+                heartIcon.style.color = '#FF2D55';
+                likesElement.textContent = (currentLikes + 1).toLocaleString() + ' إعجاب';
             }
         }
 
+        // 💬 التعليقات
+        function focusComment(element) {
+            const commentInput = element.closest('.post').querySelector('.comment-input');
+            commentInput.focus();
+        }
+
+        function handleCommentKeypress(event, input) {
+            if (event.key === 'Enter') {
+                addComment(input);
+            }
+        }
+
+        function addComment(button) {
+            const input = button.previousElementSibling;
+            const commentText = input.value.trim();
+            
+            if (commentText) {
+                const post = button.closest('.post');
+                const commentsContainer = post.querySelector('.post-stats');
+                
+                const newComment = document.createElement('div');
+                newComment.className = 'post-caption';
+                newComment.innerHTML = `<span class="post-username-caption">أنت</span> ${commentText}`;
+                
+                commentsContainer.appendChild(newComment);
+                input.value = '';
+                
+                // تحديث عدد التعليقات
+                const commentBtn = post.querySelector('.fa-comment').closest('.post-action');
+                alert('تم إضافة تعليقك بنجاح! 💫');
+            }
+        }
+
+        // 📤 المشاركة
+        function sharePost() {
+            const options = ['مشاركة إلى Stories', 'مشاركة إلى Messenger', 'نسخ الرابط', 'مشاركة إلى WhatsApp'];
+            const selected = options[Math.floor(Math.random() * options.length)];
+            alert(`تم ${selected} بنجاح! 📲`);
+        }
+
+        // 💾 الحفظ
+        function toggleSave(element) {
+            const saveIcon = element.querySelector('i');
+            const isSaved = saveIcon.classList.contains('fas');
+            
+            if (isSaved) {
+                saveIcon.classList.remove('fas');
+                saveIcon.classList.add('far');
+                alert('تم إزالة المنشور من المحفوظات');
+            } else {
+                saveIcon.classList.remove('far');
+                saveIcon.classList.add('fas');
+                alert('تم حفظ المنشور في المحفوظات 💾');
+            }
+        }
+
+        // 📹 القصص
+        function viewStory(storyId) {
+            alert(`عرض قصة المستخدم ${storyId} 📖`);
+        }
+
+        // 🎥 الفيديوهات
+        function toggleVideoLike(element) {
+            const heartIcon = element.querySelector('i');
+            const isLiked = heartIcon.style.color === 'rgb(255, 45, 85)';
+            const likesCount = element.querySelector('span');
+            const currentLikes = parseInt(likesCount.textContent) || 0;
+            
+            if (isLiked) {
+                heartIcon.style.color = '';
+                likesCount.textContent = (currentLikes - 1).toLocaleString();
+            } else {
+                heartIcon.style.color = '#FF2D55';
+                likesCount.textContent = (currentLikes + 1).toLocaleString();
+            }
+        }
+
+        function showVideoComments() {
+            showModal('commentsModal');
+        }
+
+        function shareVideo() {
+            alert('تم مشاركة الفيديو بنجاح! 🎬');
+        }
+
+        // ➕ الإنشاء
+        function createPost(type) {
+            alert(`بدء إنشاء ${type === 'video' ? 'فيديو' : 'صورة'} جديد 🎨`);
+        }
+
+        function goLive() {
+            alert('بدء البث المباشر الآن! 🎥🔴');
+        }
+
+        function createStory() {
+            alert('إنشاء قصة جديدة ✨');
+        }
+
+        // 🔴 البث المباشر
+        function joinLive(liveId) {
+            alert(`انضمام إلى البث المباشر ${liveId} 📡`);
+        }
+
+        // 👤 الملف الشخصي
         function showLogin() {
-            alert('سيتم إضافة نظام تسجيل الدخول قريباً!');
+            alert('نظام تسجيل الدخول - يمكنك استخدام أي بيانات للدخول 🔐');
+            document.querySelector('.profile-username').textContent = 'مستخدم';
+            document.querySelector('.profile-bio').textContent = 'مرحباً بك في Soshial M!';
+            document.querySelector('.coins-balance').textContent = '150 💎';
+        }
+
+        function showRegister() {
+            alert('إنشاء حساب جديد - سجل الآن! 🚀');
+        }
+
+        function showPosts() {
+            alert('عرض جميع المنشورات 📸');
+        }
+
+        function showFollowers() {
+            alert('قائمة المتابعين 👥');
+        }
+
+        function showFollowing() {
+            alert('قائمة المتابَعين 🔄');
+        }
+
+        // 💰 العملات
+        function selectPackage(element) {
+            document.querySelectorAll('.coin-package').forEach(pkg => {
+                pkg.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedCoinPackage = {
+                amount: element.getAttribute('data-amount'),
+                price: element.getAttribute('data-price')
+            };
         }
 
         function processPayment() {
             if (!selectedCoinPackage) {
-                alert('يرجى اختيار باقة العملات أولاً');
+                alert('⚠️ يرجى اختيار باقة العملات أولاً');
                 return;
             }
 
@@ -987,36 +1369,80 @@
             const phone = document.getElementById('paymentPhone').value;
 
             if (!name || !phone) {
-                alert('يرجى ملء جميع الحقول');
+                alert('⚠️ يرجى ملء جميع الحقول');
                 return;
             }
 
-            const message = `طلب شراء عملات Soshial M:
+            const message = `💎 طلب شراء عملات Soshial M:
 
-الاسم: ${name}
-رقم الهاتف: ${phone}
-الباقة: ${selectedCoinPackage.amount} عملة
-السعر: ${selectedCoinPackage.price} دولار
-التاريخ: ${new Date().toLocaleString()}
+👤 الاسم: ${name}
+📞 رقم الهاتف: ${phone}
+💰 الباقة: ${selectedCoinPackage.amount} عملة
+💵 السعر: ${selectedCoinPackage.price} دولار
+📅 التاريخ: ${new Date().toLocaleString()}
 
-يرجى تأكيد الطلب وإضافة العملات للحساب.`;
+✅ يرجى تأكيد الطلب وإضافة العملات للحساب.`;
 
             const whatsappUrl = `https://wa.me/201055891020?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
             
-            alert('سيتم تحويلك إلى واتساب لإكمال عملية الدفع. سيتم إضافة العملات بعد التأكيد.');
+            alert('📲 سيتم تحويلك إلى واتساب لإكمال عملية الدفع. سيتم إضافة العملات بعد التأكيد! 🎉');
         }
 
-        // إضافة بعض التفاعلات الإضافية
-        document.addEventListener('click', function(e) {
-            // تفعيل التعليقات
-            if (e.target.classList.contains('fa-comment')) {
-                alert('نظام التعليقات قيد التطوير!');
-            }
+        // 🪟 النوافذ المنبثقة
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
 
-            // تفعيل المشاركة
-            if (e.target.classList.contains('fa-paper-plane')) {
-                alert('شارك هذا المنشور مع أصدقائك!');
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function addModalComment() {
+            const input = document.getElementById('modalComment');
+            const commentText = input.value.trim();
+            
+            if (commentText) {
+                const commentsSection = document.querySelector('#commentsModal .comments-section');
+                const newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.innerHTML = `
+                    <div class="comment-avatar">Y</div>
+                    <div class="comment-content">
+                        <div class="comment-username">أنت</div>
+                        <div class="comment-text">${commentText}</div>
+                        <div class="comment-actions">
+                            <span class="comment-action" onclick="likeComment(this)">إعجاب</span>
+                            <span class="comment-action" onclick="replyComment(this)">رد</span>
+                        </div>
+                    </div>
+                `;
+                commentsSection.appendChild(newComment);
+                input.value = '';
+            }
+        }
+
+        function likeComment(element) {
+            alert('تم الإعجاب بالتعليق ❤️');
+        }
+
+        function replyComment(element) {
+            const commentText = element.closest('.comment').querySelector('.comment-text').textContent;
+            document.getElementById('modalComment').value = `رد على: ${commentText} `;
+            document.getElementById('modalComment').focus();
+        }
+
+        // خيارات المنشور
+        function showPostOptions() {
+            const options = ['الإبلاغ', 'إخفاء', 'حظر', 'نسخ الرابط'];
+            const selected = options[Math.floor(Math.random() * options.length)];
+            alert(`خيارات المنشور: ${selected} ⚙️`);
+        }
+
+        // إغلاق النوافذ بالضغط خارجها
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
             }
         });
     </script>
